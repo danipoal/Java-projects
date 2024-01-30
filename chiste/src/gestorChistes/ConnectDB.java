@@ -2,13 +2,14 @@ package gestorChistes;
 
 import java.sql.Connection;
 
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import java.time.LocalDateTime;
-
+import java.text.SimpleDateFormat;
+//import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ConnectDB {
 	
@@ -39,7 +40,7 @@ public class ConnectDB {
     		}catch(SQLException e) {
             e.printStackTrace();
     		}
-    	//registroConexion();
+    	registroConexion();
  /*	
         Statement sentencia = connect.createStatement();
 
@@ -75,9 +76,13 @@ public class ConnectDB {
         	
         	
 			Statement sentenciaConexion = connect.createStatement();
-			LocalDateTime fechaHoraActual = LocalDateTime.now();		//Linea que coge la fecha y hora actual para introducir en la bbdd
+			//LocalDateTime fechaHoraActual = LocalDateTime.now();		//Linea que coge la fecha y hora actual para introducir en la bbdd
+			Date fechaActualMilisegundos = new Date();
 			
-			String insertConexion = "INSERT INTO sesion (usuario, fecha) VALUES ('" + USER +"', " + fechaHoraActual +");";
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		    String fechaActual = formato.format(fechaActualMilisegundos);
+			
+			String insertConexion = "INSERT INTO sesion (usuario, fecha) VALUES ('" + USER +"', '" + fechaActual +"');";
 					
         	sentenciaConexion.executeUpdate(insertConexion);
         	sentenciaConexion.close();
