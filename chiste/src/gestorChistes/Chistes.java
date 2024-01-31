@@ -8,11 +8,12 @@ public class Chistes extends RepositorioMetodosChistes{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
         //Inicializamos los datos necesarios iniciales
-        Scanner sc = new Scanner(System.in);
+        
         iniciarChistes();
         //Inicializamos el menú
         int numeroMenu;
         do{
+        	Scanner sc = new Scanner(System.in);
             numeroMenu = -1;
             System.out.printf("\n-------MENU PRINCIPAL-------\n");
             System.out.println("1: Introduce un chiste");
@@ -63,10 +64,13 @@ public class Chistes extends RepositorioMetodosChistes{
                     fillChistes();
                     break;
                 case 8:
+                	
                 	menuDB();
+                	sc.close();
                 	break;
                 case 0:
                     System.out.printf("Gracias por usar este programa\n");
+                    sc.close();
                     break;
                 default:
                     System.out.printf("No hay tantas opciones en el menu\n");
@@ -74,25 +78,71 @@ public class Chistes extends RepositorioMetodosChistes{
             }
             
         }while(numeroMenu != 0);
-        sc.close();
+        
     }
 
+	
 	private static void menuDB() {
 		ConnectDB conexion = new ConnectDB();
 		
 		try {
 			conexion.connectToBD();
-		} catch (SQLException e) {
+			}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+			}
 		
-		try {
-			conexion.disconnectFromBD();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		int numeroMenuDDBB;
+		Scanner sc = new Scanner(System.in);
+		do {
+			numeroMenuDDBB = -1;
+            System.out.printf("\n\n-------MENU BBDD-------\n");
+            System.out.println("1: Ver las sesiones registradas hasta la fecha");
+            System.out.println("2: Ver todos los chistes guardados");
+            System.out.println("3: Guardar un chiste");
+            System.out.println("4: Eliminar un chiste");
+            System.out.println("5: Informacion de la conexion actual");
+            System.out.println("6: Crear PDF detallado con los chistes guardados");
+            System.out.println("\n0: Cerrar conexion y volver al menu inicial\n");
+            
+            numeroMenuDDBB = sc.nextInt();
+            while(numeroMenuDDBB < 0 && numeroMenuDDBB > 6) {
+            	System.out.println("Opcion Incorrecta\n Repite: ");
+            	numeroMenuDDBB = sc.nextInt();
+            }
+            
+            sc.nextLine();
+            switch(numeroMenuDDBB) {
+            	case 1: 
+            		break;
+            	case 2:
+            		break;
+            	case 3:
+            		break;
+            	case 4:
+            		break;
+            	case 5:
+            		break;
+            	case 6:
+            		break;
+            	case 0:
+            		sc.close();		
+            		try {
+            			conexion.disconnectFromBD();
+            			} catch (SQLException e) {
+            				// TODO Auto-generated catch block
+            				e.printStackTrace();
+            			}         	
+            		break;
+            }
+		}while(numeroMenuDDBB!= 0);
+		sc.close();
+		
+		
+		
+
+		
 	}
 	
 }
