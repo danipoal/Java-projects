@@ -59,11 +59,11 @@ class LaminaMarcoCliente extends JPanel{
 			// TODO Auto-generated method stub
 			//System.out.println(campo1.getText());
 			
-			try {
-				Socket misocket = new Socket("192.168.56.1", 9888);
+			try (Socket miSocket = new Socket("localhost", 12345);){
+				
 				
 				//Ahora hay que crear un flujo de salida de datos
-				DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
+				DataOutputStream flujo_salida = new DataOutputStream(miSocket.getOutputStream());
 				flujo_salida.writeUTF(campo1.getText());
 				
 				flujo_salida.close();
@@ -73,8 +73,10 @@ class LaminaMarcoCliente extends JPanel{
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+				
+				System.out.println(e1.getMessage() + "ERROR NO CONECTADO");
 				e1.printStackTrace();
-				System.out.println(e1.getMessage());
+				
 			}
 			
 		}
