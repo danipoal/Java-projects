@@ -5,15 +5,19 @@ import java.util.Scanner;
 
 public class Chistes extends RepositorioMetodosChistes{
 
+	static Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
         //Inicializamos los datos necesarios iniciales
         
         iniciarChistes();
         //Inicializamos el menú
         int numeroMenu;
+        //Scanner sc = new Scanner(System.in);
+        
         do{
-        	Scanner sc = new Scanner(System.in);
+        	
             numeroMenu = -1;
             System.out.printf("\n-------MENU PRINCIPAL-------\n");
             System.out.println("1: Introduce un chiste");
@@ -27,6 +31,7 @@ public class Chistes extends RepositorioMetodosChistes{
             System.out.printf("\n0: EXIT\n");
 
             System.out.printf("Introduce opcion\n");
+            //sc.nextLine();
             numeroMenu = sc.nextInt();
             while(numeroMenu < 0 || numeroMenu > 8){
                 System.out.println("Opcion Incorrecta\n Repite: ");
@@ -66,11 +71,11 @@ public class Chistes extends RepositorioMetodosChistes{
                 case 8:
                 	
                 	menuDB();
-                	sc.close();
+                	//sc.close();
                 	break;
                 case 0:
                     System.out.printf("Gracias por usar este programa\n");
-                    sc.close();
+                    //sc.close();
                     break;
                 default:
                     System.out.printf("No hay tantas opciones en el menu\n");
@@ -79,6 +84,7 @@ public class Chistes extends RepositorioMetodosChistes{
             
         }while(numeroMenu != 0);
         
+        sc.close();
     }
 
 	
@@ -94,7 +100,7 @@ public class Chistes extends RepositorioMetodosChistes{
 		
 		
 		int numeroMenuDDBB;
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		do {
 			numeroMenuDDBB = -1;
             System.out.printf("\n\n-------MENU BBDD-------\n");
@@ -127,7 +133,7 @@ public class Chistes extends RepositorioMetodosChistes{
             	case 6:
             		break;
             	case 0:
-            		sc.close();		
+            		//sc.close();		
             		try {
             			conexion.disconnectFromBD();
             			} catch (SQLException e) {
@@ -137,7 +143,7 @@ public class Chistes extends RepositorioMetodosChistes{
             		break;
             }
 		}while(numeroMenuDDBB!= 0);
-		sc.close();
+		//sc.close();
 		
 		
 		
